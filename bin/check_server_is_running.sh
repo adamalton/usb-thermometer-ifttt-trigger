@@ -3,8 +3,6 @@
 # Checks if the web server (which allows easy changing of settings) is running, and if it's not
 # then starts it.
 
-# This should be called periodically by a cron job.
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 PROJECT_DIR=`dirname $DIR`
 
