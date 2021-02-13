@@ -1,3 +1,4 @@
+import logging
 import urllib.request
 
 from .config import load_config_data
@@ -26,4 +27,6 @@ def send_min_not_reached_webhook():
 
 def _call_url(url):
     with urllib.request.urlopen(url) as response:
+        res = response.read()
+        logging.info("Webhook result: %s", res)
         return response.read()
