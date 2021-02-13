@@ -13,7 +13,7 @@ def send_max_exceeded_webook():
         event=config["max_temp_webhook_name"],
         key=config["ifttt_webhook_key"]
     )
-    _call_url(url)
+    return _call_url(url)
 
 
 def send_min_not_reached_webhook():
@@ -22,11 +22,11 @@ def send_min_not_reached_webhook():
         event=config["min_temp_webhook_name"],
         key=config["ifttt_webhook_key"]
     )
-    _call_url(url)
+    return _call_url(url)
 
 
 def _call_url(url):
     with urllib.request.urlopen(url) as response:
-        res = response.read()
-        logging.info("Webhook result: %s", res)
-        return response.read()
+        content = response.read().decode("utf8")  # Assuming UTF8, but hopefully fine!
+        logging.info("Webhook result: %s", content)
+        return content

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+	<a href="{% url 'home' %}">Home</a>
+</div>
+
+<h1>Temperature Check Result</h1>
+
+<p>{{message}}</p>
+{% if webhook_result is not None %}
+	<code>{{webhook_result}}</code>
+{% endif %}
+
+{% endblock %}

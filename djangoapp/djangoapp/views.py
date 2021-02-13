@@ -38,20 +38,25 @@ def check_temperature(request):
     max_limit = config["target_temp_max"]
     min_limit = config["target_temp_min"]
     if current > max_limit:
-        send_max_exceeded_webook()
-        msg = (
+        webhook_result = send_max_exceeded_webook()
+        message = (
             f"Current temperature ({current}°C) exceeds max limit ({max_limit},°C) "
             "webhook has been sent."
         )
     elif current < min_limit:
-        send_min_not_reached_webhook()
-        msg = (
+        webhook_result = send_min_not_reached_webhook()
+        message = (
             f"Current temperature ({current}°C) has not reached min limit ({min_limit}°C) "
-            "webhook has been sent."
+            f"webhook has been sent."
         )
     else:
-        msg = (
+        webhook_result = None
+        message = (
             f"Current temperature ({current}°C) falls within the set range "
             f"({min_limit}-{max_limit}°C)."
         )
-    return HttpResponse(msg)
+    context = {
+        "message": message,
+        "webhook_result": webhook_result,
+    }
+    return render(request, "check_temperature.html", context)
