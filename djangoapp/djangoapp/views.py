@@ -41,13 +41,13 @@ def check_temperature(request):
         send_max_exceeded_webook()
         msg = (
             f"Current temperature ({current}°C) exceeds max limit ({max_limit},°C) "
-            "webhook as been sent."
+            "webhook has been sent."
         )
     elif current < min_limit:
         send_min_not_reached_webhook()
         msg = (
-            f"Current temperature ({current}°C) has not reached min limit ({min_limit}°C)",
-            "webhook as been sent."
+            f"Current temperature ({current}°C) has not reached min limit ({min_limit}°C) "
+            "webhook has been sent."
         )
     else:
         msg = (
