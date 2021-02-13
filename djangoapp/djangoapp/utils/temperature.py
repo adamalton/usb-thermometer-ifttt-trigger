@@ -2,6 +2,7 @@ from temper import Temper
 
 
 def get_current_temperature():
+    """ Get the current temperature from the TEMPer USB device. """
     temper = Temper()
     devices: list[dict] = temper.read()
     keys = ["celsius", "internal temperature"]
