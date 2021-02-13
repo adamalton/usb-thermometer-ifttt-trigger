@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>USB Zone Thermostat</h1>
+
+<h2>Configuration</h2>
+<form method="post" action="" accept-charset="utf8">
+	{% csrf_token %}
+	{{form.as_p}}
+	<div>
+		<button type="submit">Save</button>
+	</div>
+</form>
+
+<h2>Check Status</h2>
+
+<p>
+	This is the URL which gets called by the cron job.
+</p>
+<p>
+	<a href="{% url 'check_temperature' %}">{% url 'check_temperature' %}</a>
+</p>
+{% endblock %}
