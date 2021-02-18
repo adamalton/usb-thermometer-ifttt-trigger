@@ -20,7 +20,7 @@ class ConfigForm(forms.Form):
     min_temp_webhook_name = forms.CharField(initial="living_room_below_min_temperature")
     ifttt_webhook_key = forms.CharField(
         label="IFTTT webhook key",
-        widget=forms.TextInput(attrs={"autocomplete": "off"}),
+        widget=forms.PasswordInput(attrs={"autocomplete": "off"}),
     )
 
     def clean(self, *args, **kwargs):
