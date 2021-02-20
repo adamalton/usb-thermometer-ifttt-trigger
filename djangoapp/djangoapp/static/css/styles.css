@@ -4,8 +4,8 @@ input.input {
 }
 
 .has-checkbox input[type=checkbox],
-.has-checkbox-multiple input[type=checkbox]{
-	line-height: 2.5em;
+.has-checkbox-multiple input[type=checkbox] {
+	margin: 1.2em 0 0 0.5em;
 }
 
 .has-checkbox-multiple ul {
