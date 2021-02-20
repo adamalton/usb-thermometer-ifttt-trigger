@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.exceptions import ValidationError
 from django import forms
 
@@ -34,6 +36,10 @@ class BulmaForm(forms.Form):
 class ConfigForm(BulmaForm):
     """ Form for allowing the user to configure the settings. """
 
+    def __init__(self, *args, **kwargs):
+        if 'initial' in kwargs:
+            kwargs['initial'] = self._convert_from_json_serialised_data(kwargs['initial'])
+        super().__init__(*args, **kwargs)
     # ----- Commonly changed settings ----
 
     target_temp_max = forms.FloatField(
@@ -74,6 +80,7 @@ class ConfigForm(BulmaForm):
     )
     auto_enable_on_days = forms.MultipleChoiceField(
         choices=WEEKDAY_CHOICES,
+        initial=[x[0] for x in WEEKDAY_CHOICES],
         label="Auto-enable on these days",
         widget=forms.CheckboxSelectMultiple,
     )
@@ -97,4 +104,30 @@ class ConfigForm(BulmaForm):
         return cleaned_data
 
     def save(self):
-        save_config_data(self.cleaned_data)
+        data = self._get_json_serialisable_data()
+        save_config_data(data)
+
+    def _get_json_serialisable_data(self):
+        """ Return a version of self.cleaned_data which can be safely stored to JSON. """
+        # TODO: it would be better to create a custom JSON encoder, but this quick hack gets
+        # things working for now
+        data = {}
+        for key, value in self.cleaned_data.items():
+            if isinstance(value, datetime.time):
+                value = (value.hour, value.minute)
+            data[key] = value
+        return data
+
+    def _convert_from_json_serialised_data(self, data):
+        """ Given a version of the data which was serialised to JSON, return a version which can
+            safely be unused for the `initial` data to populate the form fields.
+        """
+        if not data:
+            return data
+        converted = data.copy()
+        time_fields = ("auto_disable_at", "auto_enable_at")
+        for field in time_fields:
+            value = converted.get(field)
+            if value and isinstance(value, (list, tuple)):
+                converted[field] = datetime.time(value[0], value[1])
+        return converted
