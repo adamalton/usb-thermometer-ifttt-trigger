@@ -1,8 +1,8 @@
 {% load form_tags %}
-<div class="{{class}}">
+<div class="field pb-2 {{class}}">
 	{% label_tag field class="input is-static" %}
 	{{field}}
-	<p class="help">{{ field.help_text }}</p>
+	<p class="help has-text-grey">{{ field.help_text }}</p>
 	{% if field.errors %}
 		{% for error in field.errors %}
 			<p class="error">{{error}}</p>

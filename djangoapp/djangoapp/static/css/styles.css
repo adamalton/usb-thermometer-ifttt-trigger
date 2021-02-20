@@ -3,8 +3,8 @@ input.input {
 	width: unset !important;
 }
 
-.has-checkbox,
-.has-checkbox-multiple {
+.has-checkbox input[type=checkbox],
+.has-checkbox-multiple input[type=checkbox]{
 	line-height: 2.5em;
 }
 
