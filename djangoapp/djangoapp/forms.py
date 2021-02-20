@@ -115,6 +115,8 @@ class ConfigForm(BulmaForm):
         for key, value in self.cleaned_data.items():
             if isinstance(value, datetime.time):
                 value = (value.hour, value.minute)
+            elif key == "auto_enable_on_days":
+                value = [int(x) for x in value]
             data[key] = value
         return data
 
