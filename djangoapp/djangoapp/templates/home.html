@@ -5,13 +5,8 @@
 <h1>USB Zone Thermostat</h1>
 
 <h2>Configuration</h2>
-<form method="post" action="" accept-charset="utf8">
-	{% csrf_token %}
-	{{form.as_p}}
-	<div>
-		<button type="submit">Save</button>
-	</div>
-</form>
+
+{% include "config_form.html" %}
 
 <h2>Check Status</h2>
 
