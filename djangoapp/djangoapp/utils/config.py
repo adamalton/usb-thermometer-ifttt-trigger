@@ -3,8 +3,6 @@ import os
 
 dn = os.path.dirname
 CONFIG_FILE_PATH = os.path.join(dn(dn(dn(dn(os.path.abspath(__file__))))), "data", "config.json")
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# CONFIG_FILE_PATH = os.path.join("..", "..", "..", "data", "config.json")
 
 
 class NotConfigured(Exception):
