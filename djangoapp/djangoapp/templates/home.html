@@ -2,18 +2,20 @@
 
 {% block content %}
 
-<h1>USB Zone Thermostat</h1>
+<div class="columns is-variable is-8">
+	<div class="column is-8">
+		<h2 class="title">Configuration</h2>
+		{% include "config_form.html" %}
+	</div>
 
-<h2>Configuration</h2>
-
-{% include "config_form.html" %}
-
-<h2>Check Status</h2>
-
-<p>
-	This is the URL which gets called by the cron job.
-</p>
-<p>
-	<a href="{% url 'check_temperature' %}">{% url 'check_temperature' %}</a>
-</p>
+	<div class="column is-8">
+		<h2 class="title">Check Status</h2>
+		<p class="content">
+			This is the URL which gets called by the cron job.
+		</p>
+		<p class="content">
+			<a href="{% url 'check_temperature' %}" class="button is-primary">Run temperature check</a>
+		</p>
+	</div>
+</div>
 {% endblock %}

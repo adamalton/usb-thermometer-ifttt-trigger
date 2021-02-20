@@ -7,26 +7,29 @@
 		{% endfor %}
 	{% endif %}
 
-	<fieldset>
-		<legend>Temperature Control</legend>
-		{% include "incl/form_field.html" with field=form.active %}
+	<div class="field has-text-right">
+		<button type="submit" class="button is-primary">Save Changes</button>
+	</div>
+	<fieldset class="box">
+		<legend class="tag is-light is-medium has-text-weight-bold">Temperature Control</legend>
+		{% include "incl/form_field.html" with field=form.active class="has-checkbox" %}
 		{% include "incl/form_field.html" with field=form.target_temp_max %}
 		{% include "incl/form_field.html" with field=form.target_temp_min %}
 	</fieldset>
-	<fieldset>
-		<legend>Schedule</legend>
+	<fieldset class="box">
+		<legend class="tag is-light is-medium has-text-weight-bold">Schedule</legend>
 		{% include "incl/form_field.html" with field=form.auto_disable_at %}
-		{% include "incl/form_field.html" with field=form.switch_heating_off_when_auto_disabling %}
+		{% include "incl/form_field.html" with field=form.switch_heating_off_when_auto_disabling class="has-checkbox" %}
 		{% include "incl/form_field.html" with field=form.auto_enable_at %}
-		{% include "incl/form_field.html" with field=form.auto_enable_on_days %}
+		{% include "incl/form_field.html" with field=form.auto_enable_on_days class="has-checkbox-multiple" %}
 	</fieldset>
-	<fieldset>
-		<legend>Configuration</legend>
+	<fieldset class="box">
+		<legend class="tag is-light is-medium has-text-weight-bold">Configuration</legend>
 		{% include "incl/form_field.html" with field=form.max_temp_webhook_name %}
 		{% include "incl/form_field.html" with field=form.min_temp_webhook_name %}
 		{% include "incl/form_field.html" with field=form.ifttt_webhook_key %}
 	</fieldset>
-	<div>
-		<button type="submit">Save All The Things</button>
+	<div class="field has-text-right">
+		<button type="submit" class="button is-primary">Save Changes</button>
 	</div>
 </form>

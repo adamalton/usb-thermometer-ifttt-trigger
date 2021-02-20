@@ -1,0 +1,26 @@
+label.input,
+input.input {
+	width: unset !important;
+}
+
+.has-checkbox,
+.has-checkbox-multiple {
+	line-height: 2.5em;
+}
+
+.has-checkbox-multiple ul {
+	display: flex;
+	list-style: none;
+}
+.has-checkbox-multiple ul li {
+	padding-right: 1.5em;
+}
+
+fieldset legend.tag.is-medium,
+fieldset legend.tag.is-large {
+	line-height: 2em;
+}
+
+fieldset.box {
+	background-color: hsl(0, 0%, 96%);
+}
