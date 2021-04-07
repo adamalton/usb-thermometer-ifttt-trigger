@@ -34,6 +34,9 @@ cd usb-thermometer-ifttt-trigger
 bin/install.sh
 ```
 
+You might want to edit `TIME_ZONE` in `djangoapp/settings.py` if you're not in the UK.
+See [list of time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for options.
+
 Then you need to add this script to your crontab so that it is run at regular intervals.
 For now, this needs to be run from the root crontab so that the script has permissions on the USB device.
 

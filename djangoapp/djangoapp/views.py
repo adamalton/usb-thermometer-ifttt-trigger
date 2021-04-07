@@ -1,8 +1,7 @@
-import datetime
-
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from .forms import ConfigForm
 from .utils.config import load_config_data, save_config_data
@@ -65,7 +64,7 @@ def check_temperature(request):
         if current > max_limit:
             webhook_result = send_max_exceeded_webook()
             message += (
-                f"Current temperature ({current}°C) exceeds max limit ({max_limit},°C) "
+                f"Current temperature ({current}°C) exceeds max limit ({max_limit}°C) "
                 "webhook has been sent."
             )
         elif current < min_limit:
@@ -104,7 +103,7 @@ def _set_to_disabled(config):
 def _should_enable(config):
     enable_at = config["auto_enable_at"]
     enable_on_days = config["auto_enable_on_days"]
-    now = datetime.datetime.now()
+    now = timezone.localtime()
     today = now.weekday() + 1  # Zero-indexed
     if today in enable_on_days:
         if enable_at:
@@ -119,7 +118,7 @@ def _should_enable(config):
 def _should_disable(config):
     disable_at = config["auto_disable_at"]
     if disable_at:
-        now = datetime.datetime.now()
+        now = timezone.localtime()
         if _is_after(now, disable_at[0], disable_at[1]):
             return True
     return False
