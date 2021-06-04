@@ -1,4 +1,5 @@
 {% load static %}
+{% load bulma_tags %}
 <!doctype html>
 <html lang="en-GB">
 <head>
@@ -21,7 +22,7 @@
 	<div class="container">
 		<div class="block" id="messages">
 			{% for message in messages %}
-				<div class="notification message {{message.tags}}">{{message}}</div>
+				<div class="notification message {{message.tags|bulma_message_class}}">{{message}}</div>
 			{% endfor %}
 		</div>
 
