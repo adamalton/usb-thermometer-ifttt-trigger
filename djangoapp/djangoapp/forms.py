@@ -80,6 +80,7 @@ class ConfigForm(BulmaForm):
     )
     auto_enable_on_days = forms.MultipleChoiceField(
         choices=WEEKDAY_CHOICES,
+        required=False,
         initial=[x[0] for x in WEEKDAY_CHOICES],
         label="Auto-enable on these days",
         widget=forms.CheckboxSelectMultiple,

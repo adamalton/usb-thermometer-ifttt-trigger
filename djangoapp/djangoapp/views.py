@@ -17,6 +17,7 @@ def home(request):
             form.save()
             messages.success(request, "Configuration saved")
             return redirect("home")
+        messages.error(request, "Please correct the errors on the form.")
     else:
         form = ConfigForm(initial=load_config_data(fail_silently=True))
     context = {
