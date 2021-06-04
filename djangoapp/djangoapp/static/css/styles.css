@@ -24,3 +24,11 @@ fieldset legend.tag.is-large {
 fieldset.box {
 	background-color: hsl(0, 0%, 96%);
 }
+
+.field.error {
+	border: 2px solid hsl(348, 100%, 61%);
+	border-radius: 4px;
+	margin-left: -0.5rem;
+	margin-right: -0.5rem;
+	padding: 0.5rem;
+}
